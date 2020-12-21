@@ -1,0 +1,17 @@
+---
+
+galaxy_info:
+  author: idealista
+  company: Idealista S.A.U.
+  description: Nomad Role
+  min_ansible_version: 2.9.9
+  license: Apache 2.0
+  galaxy-tags:
+    - nomad
+    - automation
+    - example_tag3
+  platforms:
+    - name: Debian
+      versions:
+        
+        - buster

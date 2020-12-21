@@ -1,0 +1,5 @@
+---
+- name: Converge
+  hosts: nomad_group
+  roles:
+    - role: nomad_role

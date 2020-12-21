@@ -1,0 +1,16 @@
+---
+
+- name: NOMAD | Install
+  include: install.yml
+  tags:
+    - nomad_install
+
+- name: NOMAD | Configure
+  include: config.yml
+  tags:
+    - nomad_configure
+
+- name: NOMAD | Service
+  include: service.yml
+  tags:
+    - nomad_service

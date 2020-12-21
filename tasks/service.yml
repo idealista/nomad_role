@@ -1,0 +1,17 @@
+---
+
+- name: NOMAD | Copy Daemon script
+  template:
+    src: nomad.service.j2
+    dest: /etc/systemd/system/nomad.service
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart nomad
+
+- name: NOMAD | Configuring service
+  systemd:
+    name: nomad
+    state: "{{ nomad_service_state }}"
+    enabled: "{{ nomad_service_enabled }}"
+    daemon_reload: yes
