@@ -2,7 +2,7 @@
 
 ## General
 # Version
-nomad_version: 0.12.9
+nomad_version: 1.0.1
 
 # Package URL
 nomad_deb_repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
@@ -38,7 +38,7 @@ nomad_group: nomad
 nomad_max_files: 32768
 
 # Start on boot
-nomad_service_enabled: True
+nomad_service_enabled: true
 # Current state: started, stopped
 nomad_service_state: started
 
@@ -51,7 +51,7 @@ nomad_private_tmp: true
 
 nomad_log_level: "DEBUG"
 nomad_agent_name: server
-nomad_mode: server
+nomad_mode: server  # Possible options: server, client, both
 nomad_bootstrap_expect: 1
 nomad_servers:
   - "127.0.0.1:{{ nomad_http_port }}"
