@@ -11,6 +11,7 @@ client {
 # Because we will potentially have two clients talking to the same
 # Docker daemon, we have to disable the dangling container cleanup,
 # otherwise they will stop each other's work thinking it was orphaned.
+{% if nomad_plugins_enable_docker==true %}
 plugin "docker" {
   config {
     gc {
@@ -20,3 +21,4 @@ plugin "docker" {
     }
   }
 }
+{% endif %}

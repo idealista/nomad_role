@@ -49,11 +49,13 @@ nomad_log_output: "journal"
 
 nomad_private_tmp: true
 
-nomad_log_level: "debug"
+nomad_log_level: "DEBUG"
 nomad_agent_name: server
 nomad_mode: server
 nomad_bootstrap_expect: 1
 nomad_servers:
-  - 127.0.0.1:4646
+  - "127.0.0.1:{{ nomad_http_port }}"
 nomad_http_port: 4646
 nomad_bind_addr: 0.0.0.0
+
+nomad_plugins_enable_docker: true
