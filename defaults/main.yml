@@ -9,6 +9,10 @@ nomad_release_name: "nomad_{{ nomad_version }}_{{ nomad_release_system }}"
 nomad_package: "{{ nomad_release_name }}.zip"
 nomad_url: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/{{ nomad_package }}"
 
+# Required libs
+nomad_required_libs:
+  - unzip
+
 # Package paths
 nomad_download_path: /usr/src
 nomad_package_path: "{{ nomad_download_path }}/{{ nomad_package }}"
