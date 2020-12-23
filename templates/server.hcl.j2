@@ -1,6 +1,6 @@
 {{ ansible_managed }}
 # Enable the server
-{% if nomad_mode='server' or nomad_mode='both' %}
+{% if nomad_mode=='server' or nomad_mode=='both' %}
 server {
   enabled = true
 
