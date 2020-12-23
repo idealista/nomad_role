@@ -1,4 +1,4 @@
-{{ ansible_managed }}
+{{ ansible_managed | comment }}
 # Enable the server
 {% if nomad_mode=='server' or nomad_mode=='both' %}
 server {

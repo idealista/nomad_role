@@ -12,7 +12,7 @@ Group={{ nomad_group }}
 RuntimeDirectory=nomad
 LimitNOFILE={{ nomad_max_files }}
 
-ExecStart={{ nomad_exec_name }} agent -config={{ nomad_config_dir }}
+ExecStart={{ nomad_bin_path }}/{{ nomad_exec_name }} agent -config={{ nomad_config_path }}
 StandardOutput={{ nomad_log_output }}
 StandardError={{ nomad_log_output }}
 ExecReload=/bin/kill -HUP $MAINPID

@@ -1,16 +1,8 @@
 ---
-- name: NOMAD | Ensure data paths
-  file:
-    dest: "{{ item }}"
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    state: directory
-  with_items: "{{ nomad_data_paths }}"
-
 - name: NOMAD | Base config
   template:
     src: "{{ nomad_base_config_template_path }}"
-    dest: "{{ nomad_config_dir }}/nomad.hcl"
+    dest: "{{ nomad_config_path }}/nomad.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
   notify: restart nomad
@@ -18,7 +10,7 @@
 - name: NOMAD| Server config
   template:
     src: "{{ nomad_server_template_path }}"
-    dest: "{{ nomad_config_dir}}/server.hcl"
+    dest: "{{ nomad_config_path}}/server.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
   when: nomad_server_template_path is defined
@@ -27,7 +19,7 @@
 - name: NOMAD| Client config
   template:
     src: "{{ nomad_client_template_path }}"
-    dest: "{{ nomad_config_dir }}/client.hcl"
+    dest: "{{ nomad_config_path }}/client.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
   when: nomad_client_template_path is defined
