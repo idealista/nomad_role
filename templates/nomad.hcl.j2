@@ -1,0 +1,15 @@
+# Full configuration options can be found at https://www.nomadproject.io/docs/configuration
+# Increase log verbosity
+log_level = "DEBUG"
+
+bind_addr = "{{ nomad_bind_addr }}"
+
+# Setup data dir
+data_dir = "{{ nomad_data_dir }}"
+
+# Give the agent a unique name. Defaults to hostname
+name = "{{ nomad_agent_name }}"
+
+ports {
+  http = {{ nomad_http_port }}
+}

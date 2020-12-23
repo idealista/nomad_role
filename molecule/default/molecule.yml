@@ -11,15 +11,20 @@ platforms:
     groups:
       - nomad_group
     image: ${MOLECULE_DISTRO:-debian:buster-slim}
-    privileged: false
+    privileged: true
     capabilities:
       - SYS_ADMIN
+    exposed_ports:
+      - 4646/tcp
+    published_ports:
+      - 0.0.0.0:4646:4646/tcp
     tmpfs:
       - /tmp
       - /run
       - /run/lock
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock'
     command: '/lib/systemd/systemd'
     stop_signal: 'RTMIN+3'
 provisioner:

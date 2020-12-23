@@ -14,61 +14,25 @@
     shell: /usr/sbin/nologin
     createhome: no
 
-- name: NOMAD | Ensure skeleton paths
-  file:
-    dest: "{{ item }}"
-
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-
-    state: directory
-  with_items:
-    - "{{ nomad_skeleton_paths }}"
-
-- name: NOMAD | Ensure skeleton log paths
-  file:
-    dest: "{{ nomad_log_path }}"
-
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-
-    state: file
-  when: nomad_log_file is defined
-
 - name: NOMAD | Check nomad version
   command: "{{ nomad_exec_name }} --version"
   register: nomad_check
   changed_when: false
   ignore_errors: true
 
-- name: NOMAD | Download package
-  get_url:
-    url: "{{ nomad_url }}"
-    dest: "{{ nomad_package_path }}"
-  when: nomad_force_reinstall or nomad_check is failed or nomad_version not in nomad_check.stderr
-
-- name: NOMAD | Extract downloaded package
-  unarchive:
-    src: "{{ nomad_package_path }}"
-    dest: "{{ nomad_download_path }}"
-    remote_src: True
-  when: nomad_force_reinstall or nomad_check is failed or nomad_version  not in nomad_check.stderr
-
-- name: NOMAD | Copy binary
-  copy:
-    src: "{{ nomad_src_bin }}"
-    dest: "{{ nomad_bin_path }}/{{ nomad_exec_name }}"
-
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-
-    remote_src: True
-    mode: 0755
-  when: nomad_force_reinstall or nomad_check is failed or nomad_version not in nomad_check.stderr
-
-- name: NOMAD | Link binary
-  file:
-    src: "{{ nomad_bin_path }}/{{ nomad_exec_name }}"
-    dest: "/usr/bin/{{ nomad_exec_name }}"
-    state: link
-  when: nomad_force_reinstall or nomad_check is failed or nomad_version not in nomad_check.stderr
+- block:
+    - name: NOMAD | Be sure hashicorp deb key is present
+      apt_key:
+        url: "{{ nomad_deb_key }}"
+        state: present
+    - name: NOMAD | Be sure nomad repo packages configured (deb)
+      apt_repository:
+        repo: "{{ nomad_deb_repo }}"
+        state: present
+        filename: 'postgresqldotorg'
+    - name: NOMAD | Be sure nomad package is installed (apt)
+      apt:
+        name: "{{ nomad_package }}"
+        state: present
+        update_cache: true
+  when: nomad_force_reinstall or nomad_check is failed or nomad_version

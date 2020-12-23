@@ -2,36 +2,37 @@
 
 ## General
 # Version
-nomad_version: 1.0.0
-nomad_release_system: linux_amd64
+nomad_version: 0.12.9
 
 # Package URL
-nomad_release_name: "exampleapplication_{{ nomad_version }}_{{ nomad_release_system }}"
-nomad_package: "{{ nomad_release_name }}.tar.gz"
-nomad_url: "https://github.com/someuser/somerepo/releases/download/v{{ nomad_version }}/{{ nomad_package }}"
-
-# Package paths
-nomad_download_path: /usr/src
-nomad_package_path: "{{ nomad_download_path }}/{{ nomad_package }}"
-nomad_src_bin: "{{ nomad_download_path }}/{{ nomad_release_name }}/bin/{{ nomad_exec_name }}"
+nomad_deb_repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+nomad_deb_key: "https://apt.releases.hashicorp.com/gpg"
+nomad_package: "nomad={{ nomad_version }}"
 
 # Set true to force the download and installation of the binary
 nomad_force_reinstall: false
 
-# Installation path
-nomad_root_path: /opt/nomad
-nomad_bin_path: "{{ nomad_root_path }}/bin"
-nomad_skeleton_paths: 
-  - "{{ nomad_bin_path }}"
 nomad_exec_name: nomad
+
+## Paths
+nomad_config_dir: "/etc/nomad.d"
+nomad_data_dir: "/opt/nomad/data"
+nomad_plugin_dir: "{{ nomad_data_dir }}/plugins"
+nomad_data_paths:
+  - "{{ nomad_data_dir }}/client"
+
+## Templates
+nomad_base_config_template_path: "nomad.hcl.j2"
+nomad_server_template_path: "server.hcl.j2"
+nomad_client_template_path: "client.hcl.j2"
 
 ## Service options
 # Documentation
-nomad_documentation_link: https://www.example.documentation.com
+nomad_documentation_link: https://learn.hashicorp.com/nomad
 
 # Owner
-nomad_user: exampleuser
-nomad_group: examplegroup
+nomad_user: nomad
+nomad_group: nomad
 
 # Maximum number of files limit
 nomad_max_files: 32768
@@ -44,16 +45,15 @@ nomad_service_state: started
 # Logs
 # If wanted to output the logs to a file define the following variable
 # More information at https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=
-# nomad_log_file: path_of_the_file
-nomad_log_output: "{% if nomad_log_file is defined %} file:{{ nomad_log_file }} {% else %} journal {% endif %}"
-
-# Flags
-nomad_port: # the port exposed by the service goes here 
-nomad_flag1_value: example_value_1
-nomad_flag2_value: example_value_2
-nomad_options:  
-  - "port {{ nomad_port }}"
-  - "flag1 {{ nomad_flag1_value }}"
-  - "flag2 {{ nomad_flag2_value }}"
+nomad_log_output: "journal"
 
 nomad_private_tmp: true
+
+nomad_log_level: "debug"
+nomad_agent_name: server
+nomad_mode: server
+nomad_bootstrap_expect: 1
+nomad_servers:
+  - 127.0.0.1:4646
+nomad_http_port: 4646
+nomad_bind_addr: 0.0.0.0
