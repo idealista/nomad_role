@@ -6,7 +6,7 @@
 
 
 
-This ansible role installs [Nomad](APP_URL_HERE) in a Debian environment. It has been tested for the following Debian versions:
+This ansible role installs [Nomad](https://learn.hashicorp.com/nomad) in a Debian environment. It has been tested for the following Debian versions:
 
 * Buster
 
@@ -84,7 +84,7 @@ $ pipenv run molecule test
 
 ![Ansible](https://img.shields.io/badge/ansible-2.9.9-green.svg)
 ![Molecule](https://img.shields.io/badge/molecule-3.0.4-green.svg)
-![Goss](https://img.shields.io/badge/goss-0.3.14-green.svg)
+![Goss](https://img.shields.io/badge/goss-0.3.16-green.svg)
 
 ## Versioning
 

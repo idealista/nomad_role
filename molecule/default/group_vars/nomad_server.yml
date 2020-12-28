@@ -1,0 +1,6 @@
+---
+nomad_mode: server
+nomad_servers:
+    - "nomadserver:{{ nomad_serf_port }}"
+    - "nomadserver2:{{ nomad_serf_port }}"
+    - "nomadboth:{{ nomad_serf_port }}"

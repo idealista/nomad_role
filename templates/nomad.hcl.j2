@@ -1,0 +1,26 @@
+{{ ansible_managed | comment }}
+# Full configuration options can be found at https://www.nomadproject.io/docs/configuration
+# Increase log verbosity
+log_level = "{{ nomad_log_level }}"
+
+# Give the agent a unique name. Defaults to hostname
+name = "{{ nomad_agent_name }}"
+region = "{{ nomad_region }}"
+datacenter = "{{ nomad_datacenter }}"
+
+bind_addr = "{{ nomad_bind_address }}"
+
+ports {
+  http = {{ nomad_http_port }}
+  rpc = {{ nomad_rpc_port }}
+  serf = {{ nomad_serf_port }}
+}
+
+advertise {
+    http = "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
+    rpc = "{{ nomad_advertise_address }}:{{ nomad_rpc_port }}"
+    serf = "{{ nomad_advertise_address }}:{{ nomad_serf_port }}"
+}
+
+# Setup data dir
+data_dir = "{{ nomad_data_path }}"

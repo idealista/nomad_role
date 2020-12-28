@@ -1,0 +1,89 @@
+---
+
+## General
+# Version
+nomad_version: 1.0.1
+nomad_release_system: linux_amd64
+# Package URL
+nomad_release_name: "nomad_{{ nomad_version }}_{{ nomad_release_system }}"
+nomad_package: "{{ nomad_release_name }}.zip"
+nomad_url: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/{{ nomad_package }}"
+
+# Required libs
+nomad_required_libs:
+  - unzip
+
+# Package paths
+nomad_download_path: /usr/src
+nomad_package_path: "{{ nomad_download_path }}/{{ nomad_package }}"
+nomad_src_bin: "{{ nomad_download_path }}/{{ nomad_exec_name }}"
+
+# Set true to force the download and installation of the binary
+nomad_force_reinstall: false
+
+nomad_exec_name: nomad
+
+## Paths
+nomad_root_path: /opt/nomad
+nomad_data_path: "{{ nomad_root_path }}/data"
+nomad_bin_path: "{{ nomad_root_path }}/bin"
+nomad_config_path: "/etc/nomad.d"
+plugin_plugin_path: "{{ nomad_data_path }}/plugins"
+nomad_skeleton_paths:
+  - "{{ nomad_data_path }}"
+  - "{{ nomad_bin_path }}"
+  - "{{ nomad_config_path }}"
+  - "{{ plugin_plugin_path }}"
+
+## Templates
+nomad_base_config_template_path: "nomad.hcl.j2"
+nomad_server_template_path: "server.hcl.j2"
+nomad_client_template_path: "client.hcl.j2"
+
+## Service options
+# Documentation
+nomad_documentation_link: https://learn.hashicorp.com/nomad
+
+# Owner
+nomad_user: nomad
+nomad_group: nomad
+
+# Maximum number of files limit
+nomad_max_files: 32768
+
+# Start on boot
+nomad_service_enabled: true
+# Current state: started, stopped
+nomad_service_state: started
+
+# Logs
+# If wanted to output the logs to a file define the following variable
+# More information at https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=
+nomad_log_output: "journal"
+
+nomad_private_tmp: true
+
+## Base config
+nomad_log_level: "DEBUG"
+nomad_agent_name: server
+nomad_region: "global"
+nomad_datacenter: "dc1"
+nomad_mode: server  # Possible options: server, client, both
+nomad_http_port: 4646
+nomad_rpc_port: 4647
+nomad_serf_port: 4648
+nomad_bind_address: 0.0.0.0
+nomad_advertise_address: ''
+
+## Server config
+nomad_bootstrap_expect: 3   # Always 3 minimum for production
+nomad_retry_max: 10
+nomad_retry_interval: "10s"
+nomad_rejoin_after_leave: "true"
+
+# Client config
+nomad_servers:
+  - "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
+  - "{{ nomad_advertise_address }}:{{ nomad_rpc_port }}"
+  - "{{ nomad_advertise_address }}:{{ nomad_serf_port }}"
+nomad_plugins_enable_docker: "true"

@@ -1,0 +1,4 @@
+---
+nomad_mode: client
+nomad_servers:
+    - "nomadserver:{{ nomad_rpc_port }}"

@@ -1,0 +1,20 @@
+{{ ansible_managed | comment }}
+# Enable the server
+{% if nomad_mode=='server' or nomad_mode=='both' %}
+server {
+  enabled = true
+
+  # Self-elect, should be 3 or 5 for production
+  bootstrap_expect = {{ nomad_bootstrap_expect }}
+
+  retry_join = [
+    {% set comma = joiner(",") %}
+    {% for server in nomad_servers %}
+        {{ comma() }}"{{ server }}"
+    {% endfor %} ]
+  
+  retry_max = {{ nomad_retry_max }}
+  retry_interval = "{{ nomad_retry_interval }}"
+  rejoin_after_leave = {{ nomad_rejoin_after_leave }}
+}
+{% endif %}

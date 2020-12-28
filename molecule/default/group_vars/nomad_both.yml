@@ -1,0 +1,8 @@
+---
+nomad_mode: both
+nomad_servers:
+    - "nomadserver:{{ nomad_rpc_port }}"
+    - "nomadserver:{{ nomad_serf_port }}"
+    - "nomadserver2:{{ nomad_rpc_port }}"
+    - "nomadboth:{{ nomad_rpc_port }}"
+    - "nomadclient:{{ nomad_rpc_port }}"

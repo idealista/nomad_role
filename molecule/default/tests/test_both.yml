@@ -1,0 +1,49 @@
+---
+file:
+  /opt/nomad/bin:
+    owner: nomad
+    group: nomad
+    exists: true
+    filetype: directory
+
+port:
+  tcp6:4646:
+    listening: true
+    skip: false
+
+service:
+  nomad:
+    enabled: true
+    running: true 
+process:
+  nomad:
+    running: true
+user:
+  nomad:
+    exists: true
+    groups:
+      - nomad
+    shell: /usr/sbin/nologin
+group:
+  nomad:
+    exists: true
+
+command:
+    version:
+        exit-status: 0
+        exec: "nomad version"
+        stdout:
+            - "1.0.1"
+        skip: false
+    agent:
+        exit-status: 0
+        exec: "nomad agent-info"
+        stdout:
+            - "client"
+            - "server = true"
+        skip: false
+
+http:
+    http://localhost:4646/ui/:
+        status: 200
+        skip: false
