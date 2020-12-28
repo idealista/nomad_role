@@ -1,5 +1,4 @@
 ---
-
 - name: NOMAD | Ensure nomad group
   group:
     name: "{{ nomad_group }}"
@@ -27,7 +26,7 @@
   apt:
     name: "{{ item }}"
     state: present
-  with_items: "{{ nomad_required_libs}}"
+  with_items: "{{ nomad_required_libs }}"
 
 - name: NOMAD | Check nomad version
   command: "{{ nomad_exec_name }} --version"
@@ -36,29 +35,29 @@
   ignore_errors: true
 
 - block:
-  - name: NOMAD | Download package
-    get_url:
-      url: "{{ nomad_url }}"
-      dest: "{{ nomad_package_path }}"
+    - name: NOMAD | Download package
+      get_url:
+        url: "{{ nomad_url }}"
+        dest: "{{ nomad_package_path }}"
 
-  - name: NOMAD | Extract downloaded package
-    unarchive:
-      src: "{{ nomad_package_path }}"
-      dest: "{{ nomad_download_path }}"
-      remote_src: True
+    - name: NOMAD | Extract downloaded package
+      unarchive:
+        src: "{{ nomad_package_path }}"
+        dest: "{{ nomad_download_path }}"
+        remote_src: True
 
-  - name: NOMAD | Copy binary
-    copy:
-      src: "{{ nomad_src_bin }}"
-      dest: "{{ nomad_bin_path }}/{{ nomad_exec_name }}"
-      owner: "{{ nomad_user }}"
-      group: "{{ nomad_group }}"
-      remote_src: True
-      mode: 0755
+    - name: NOMAD | Copy binary
+      copy:
+        src: "{{ nomad_src_bin }}"
+        dest: "{{ nomad_bin_path }}/{{ nomad_exec_name }}"
+        owner: "{{ nomad_user }}"
+        group: "{{ nomad_group }}"
+        remote_src: True
+        mode: 0755
 
-  - name: NOMAD | Link binary
-    file:
-      src: "{{ nomad_bin_path }}/{{ nomad_exec_name }}"
-      dest: "/usr/bin/{{ nomad_exec_name }}"
-      state: link
+    - name: NOMAD | Link binary
+      file:
+        src: "{{ nomad_bin_path }}/{{ nomad_exec_name }}"
+        dest: "/usr/bin/{{ nomad_exec_name }}"
+        state: link
   when: nomad_force_reinstall or nomad_check is failed or nomad_version not in nomad_check.stderr

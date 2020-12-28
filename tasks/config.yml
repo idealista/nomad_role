@@ -10,7 +10,7 @@
 - name: NOMAD| Server config
   template:
     src: "{{ nomad_server_template_path }}"
-    dest: "{{ nomad_config_path}}/server.hcl"
+    dest: "{{ nomad_config_path }}/server.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
   when: nomad_server_template_path is defined
