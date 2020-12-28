@@ -18,8 +18,8 @@ ports {
 
 advertise {
     http = "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
-    rpc = "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
-    serf = "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
+    rpc = "{{ nomad_advertise_address }}:{{ nomad_rpc_port }}"
+    serf = "{{ nomad_advertise_address }}:{{ nomad_serf_port }}"
 }
 
 # Setup data dir
