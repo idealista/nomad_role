@@ -1,3 +1,6 @@
 ---
 
 nomad_private_tmp: false
+nomad_bootstrap_expect: 3
+nomad_agent_name: "{{ ansible_nodename }}"
+nomad_advertise_address: "{{ ansible_nodename }}"

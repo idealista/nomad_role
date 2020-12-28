@@ -7,12 +7,17 @@ client {
   # For demo assume we are talking to server1. For production,
   # this should be like "nomad.service.consul:4647" and a system
   # like Consul used for service discovery.
-  servers = ["{{ nomad_servers }}"]
+    servers = [
+      {% set comma = joiner(",") %}
+      {% for server in nomad_servers %}
+          {{ comma() }}"{{ server }}"
+      {% endfor %} ]
 }
 {% endif %}
 # Because we will potentially have two clients talking to the same
 # Docker daemon, we have to disable the dangling container cleanup,
 # otherwise they will stop each other's work thinking it was orphaned.
+
 {% if nomad_plugins_enable_docker==true %}
 plugin "docker" {
   config {

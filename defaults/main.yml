@@ -63,13 +63,27 @@ nomad_log_output: "journal"
 
 nomad_private_tmp: true
 
+## Base config
 nomad_log_level: "DEBUG"
 nomad_agent_name: server
+nomad_region: "global"
+nomad_datacenter: "dc1"
 nomad_mode: server  # Possible options: server, client, both
-nomad_bootstrap_expect: 1
-nomad_servers:
-  - "127.0.0.1:{{ nomad_http_port }}"
 nomad_http_port: 4646
-nomad_bind_addr: 0.0.0.0
+nomad_rpc_port: 4647
+nomad_serf_port: 4648
+nomad_bind_address: 0.0.0.0
+nomad_advertise_address: ''
 
-nomad_plugins_enable_docker: true
+## Server config
+nomad_bootstrap_expect: 3   # Always 3 minimum for production
+nomad_retry_max: 10
+nomad_retry_interval: "10s"
+nomad_rejoin_after_leave: "true"
+
+# Client config
+nomad_servers:
+  - "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
+  - "{{ nomad_advertise_address }}:{{ nomad_rpc_port }}"
+  - "{{ nomad_advertise_address }}:{{ nomad_serf_port }}"
+nomad_plugins_enable_docker: "true"

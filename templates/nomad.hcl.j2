@@ -3,14 +3,24 @@
 # Increase log verbosity
 log_level = "{{ nomad_log_level }}"
 
-bind_addr = "{{ nomad_bind_addr }}"
-
-# Setup data dir
-data_dir = "{{ nomad_data_path }}"
-
 # Give the agent a unique name. Defaults to hostname
 name = "{{ nomad_agent_name }}"
+region = "{{ nomad_region }}"
+datacenter = "{{ nomad_datacenter }}"
+
+bind_addr = "{{ nomad_bind_address }}"
 
 ports {
   http = {{ nomad_http_port }}
+  rpc = {{ nomad_rpc_port }}
+  serf = {{ nomad_serf_port }}
 }
+
+advertise {
+    http = "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
+    rpc = "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
+    serf = "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
+}
+
+# Setup data dir
+data_dir = "{{ nomad_data_path }}"

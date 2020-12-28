@@ -7,17 +7,108 @@ lint: |
   yamllint .
   ansible-lint .
 platforms:
-  - name: nomad
+  - name: nomadserver
     groups:
-      - nomad_group
+      - nomad_server
     image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    networks:
+      - name: nomad_network
+    purge_networks: true
     privileged: true
     capabilities:
       - SYS_ADMIN
     exposed_ports:
       - 4646/tcp
+      - 4646/udp
+      - 4647/tcp
+      - 4647/udp
+      - 4648/tcp
+      - 4648/udp
     published_ports:
       - 0.0.0.0:4646:4646/tcp
+      - 0.0.0.0:4648:4648/udp
+      - 0.0.0.0:4646:4647/udp
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
+
+  - name: nomadserver2
+    groups:
+      - nomad_server
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    networks:
+      - name: nomad_network
+    purge_networks: true
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+    exposed_ports:
+      - 4646/tcp
+      - 4646/udp
+      - 4647/tcp
+      - 4647/udp
+      - 4648/tcp
+      - 4648/udp
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
+
+  - name: nomadboth
+    groups:
+      - nomad_both
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    networks:
+      - name: nomad_network
+    purge_networks: true
+    privileged: true
+    exposed_ports:
+      - 4646/tcp
+      - 4646/udp
+      - 4647/tcp
+      - 4647/udp
+      - 4648/tcp
+      - 4648/udp
+    capabilities:
+      - SYS_ADMIN
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    command: '/lib/systemd/systemd'
+    stop_signal: 'RTMIN+3'
+
+  - name: nomadclient
+    groups:
+      - nomad_client
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    networks:
+      - name: nomad_network
+    purge_networks: true
+    privileged: true
+    exposed_ports:
+      - 4646/tcp
+      - 4646/udp
+      - 4647/tcp
+      - 4647/udp
+      - 4648/tcp
+      - 4648/udp
+    capabilities:
+      - SYS_ADMIN
     tmpfs:
       - /tmp
       - /run
