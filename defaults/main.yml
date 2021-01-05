@@ -73,11 +73,11 @@ nomad_http_port: 4646
 nomad_rpc_port: 4647
 nomad_serf_port: 4648
 nomad_bind_address: 0.0.0.0
-nomad_advertise_address: ''
+nomad_advertise_address: ""
 
 nomad_consul: False
-nomad_consul_address: ''
-nomad_consul_token: ''
+nomad_consul_address: ""
+nomad_consul_token: ""
 nomad_consul_servers_service_name: "nomad"
 nomad_consul_clients_service_name: "nomad-client"
 nomad_consul_server_auto_join: "true"
