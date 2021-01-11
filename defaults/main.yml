@@ -75,7 +75,7 @@ nomad_serf_port: 4648
 nomad_bind_address: 0.0.0.0
 nomad_advertise_address: ""
 
-# Base config - Consul
+# Base config - Consul https://www.nomadproject.io/docs/configuration/consul#consul-parameters
 nomad_consul: False
 nomad_consul_address: ""
 nomad_consul_token: ""
@@ -84,7 +84,7 @@ nomad_consul_clients_service_name: "nomad-client"
 nomad_consul_server_auto_join: True
 nomad_consul_client_auto_join: True
 
-# Base config - Vault
+# Base config - Vault https://www.nomadproject.io/docs/configuration/vault#vault-parameters
 nomad_vault_enabled: True
 nomad_vault_ca_path: ""
 nomad_vault_cert_file: ""
@@ -93,7 +93,6 @@ nomad_vault_address: ""
 nomad_vault_create_from_role: ""
 nomad_vault_allow_unauthenticated: False
 nomad_vault_task_token_ttl: ""
-# optional
 nomad_vault_ca_file: ""
 nomad_vault_namespace: ""
 nomad_vault_tls_server_name: ""
