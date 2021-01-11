@@ -19,7 +19,7 @@ nomad_package_path: "{{ nomad_download_path }}/{{ nomad_package }}"
 nomad_src_bin: "{{ nomad_download_path }}/{{ nomad_exec_name }}"
 
 # Set true to force the download and installation of the binary
-nomad_force_reinstall: false
+nomad_force_reinstall: False
 
 nomad_exec_name: nomad
 
@@ -75,18 +75,35 @@ nomad_serf_port: 4648
 nomad_bind_address: 0.0.0.0
 nomad_advertise_address: ""
 
+# Base config - Consul
 nomad_consul: False
 nomad_consul_address: ""
 nomad_consul_token: ""
 nomad_consul_servers_service_name: "nomad"
 nomad_consul_clients_service_name: "nomad-client"
-nomad_consul_server_auto_join: "true"
-nomad_consul_client_auto_join: "true"
+nomad_consul_server_auto_join: True
+nomad_consul_client_auto_join: True
+
+# Base config - Vault
+nomad_vault_enabled: True
+nomad_vault_ca_path: ""
+nomad_vault_cert_file: ""
+nomad_vault_key_file: ""
+nomad_vault_address: ""
+nomad_vault_create_from_role: ""
+nomad_vault_allow_unauthenticated: False
+nomad_vault_task_token_ttl: ""
+# optional
+nomad_vault_ca_file: ""
+nomad_vault_namespace: ""
+nomad_vault_tls_server_name: ""
+nomad_vault_tls_skip_verify: False
+
 ## Server config
 nomad_bootstrap_expect: 3   # Always 3 minimum for production
 nomad_retry_max: 10
 nomad_retry_interval: "10s"
-nomad_rejoin_after_leave: "true"
+nomad_rejoin_after_leave: True
 
 # Client config
 nomad_servers:

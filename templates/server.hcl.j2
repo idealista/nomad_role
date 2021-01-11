@@ -22,6 +22,6 @@ server {
   retry_interval = "{{ nomad_retry_interval }}"
   {% endif %}
 
-  rejoin_after_leave = {{ nomad_rejoin_after_leave }}
+  rejoin_after_leave = {{ nomad_rejoin_after_leave | bool | lower }}
 }
 {% endif %}
