@@ -50,7 +50,7 @@ vault {
     cert_file = "{{ nomad_vault_cert_file }}"
     key_file = "{{ nomad_vault_key_file }}"
     address = "{{ nomad_vault_address }}"
-    {%if nomad_node_role != 'client' %}
+    {%if nomad_mode != 'client' %}
     token = "{{ nomad_vault_token }}"
     {% endif %}
     create_from_role = "{{ nomad_vault_create_from_role }}"
