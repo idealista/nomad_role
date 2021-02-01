@@ -43,6 +43,7 @@ consul {
 }
 {% endif %}
 
+{% if nomad_vault_enabled %}
 vault {
     enabled = "{{ nomad_vault_enabled | bool | lower }}"
     ca_path = "{{ nomad_vault_ca_path }}"
@@ -60,3 +61,4 @@ vault {
     tls_server_name = "{{ nomad_vault_tls_server_name }}"
     tls_skip_verify = {{ nomad_vault_tls_skip_verify | bool | lower }}
 }
+{% endif %}
