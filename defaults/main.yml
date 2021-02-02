@@ -109,4 +109,4 @@ nomad_servers:
   - "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
   - "{{ nomad_advertise_address }}:{{ nomad_rpc_port }}"
   - "{{ nomad_advertise_address }}:{{ nomad_serf_port }}"
-nomad_plugins_enable_docker: "true"
+nomad_plugins_enable_docker: True
