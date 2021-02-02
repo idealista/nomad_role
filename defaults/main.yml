@@ -2,7 +2,7 @@
 
 ## General
 # Version
-nomad_version: 1.0.1
+nomad_version: 1.0.3
 nomad_release_system: linux_amd64
 # Package URL
 nomad_release_name: "nomad_{{ nomad_version }}_{{ nomad_release_system }}"
@@ -109,4 +109,4 @@ nomad_servers:
   - "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
   - "{{ nomad_advertise_address }}:{{ nomad_rpc_port }}"
   - "{{ nomad_advertise_address }}:{{ nomad_serf_port }}"
-nomad_plugins_enable_docker: "true"
+nomad_plugins_enable_docker: True
