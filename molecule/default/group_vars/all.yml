@@ -6,7 +6,7 @@ nomad_agent_name: "{{ ansible_nodename }}"
 nomad_advertise_address: "{{ ansible_nodename }}"
 
 # Base config - Vault
-nomad_vault_enabled: True
+nomad_vault_enabled: False
 nomad_vault_ca_path: ""
 nomad_vault_cert_file: ""
 nomad_vault_key_file: ""

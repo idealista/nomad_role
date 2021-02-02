@@ -98,6 +98,14 @@ nomad_vault_namespace: ""
 nomad_vault_tls_server_name: ""
 nomad_vault_tls_skip_verify: False
 
+# Telemetry config
+nomad_telemetry_enabled: true
+nomad_telemetry_collection_interval: "1s"
+nomad_telemetry_disable_hostname: true
+nomad_telemetry_prometheus_metrics: true
+nomad_telemetry_publish_allocation_metrics: true
+nomad_telemetry_publish_node_metrics: true
+
 ## Server config
 nomad_bootstrap_expect: 3   # Always 3 minimum for production
 nomad_retry_max: 10
