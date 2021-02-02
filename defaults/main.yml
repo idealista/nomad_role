@@ -2,7 +2,7 @@
 
 ## General
 # Version
-nomad_version: 1.0.1
+nomad_version: 1.0.3
 nomad_release_system: linux_amd64
 # Package URL
 nomad_release_name: "nomad_{{ nomad_version }}_{{ nomad_release_system }}"
