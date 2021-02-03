@@ -62,3 +62,13 @@ vault {
     tls_skip_verify = {{ nomad_vault_tls_skip_verify | bool | lower }}
 }
 {% endif %}
+
+{% if nomad_telemetry_enabled %}
+telemetry { 
+  collection_interval = "{{ nomad_telemetry_collection_interval }}"
+  disable_hostname = {{ nomad_telemetry_disable_hostname | bool | lower }}
+  prometheus_metrics = {{ nomad_telemetry_prometheus_metrics | bool | lower }}
+  publish_allocation_metrics = {{ nomad_telemetry_publish_allocation_metrics | bool | lower }}
+  publish_node_metrics = {{ nomad_telemetry_publish_node_metrics | bool | lower }}
+}
+{% endif %}
