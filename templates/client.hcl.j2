@@ -14,6 +14,15 @@ client {
           {{ comma() }}"{{ server }}"
       {% endfor %} ]
   {% endif %}
+  {% if nomad_client_host_volume is defined %}
+      {%- for volume in nomad_client_host_volume -%}
+      host_volume "{{ volume.name }}" {
+          path = "{{ volume.path }}"
+          read_only = "{{ volume.read_only }}"
+      }
+      {%- endfor -%}
+  {% endif %}
+
 }
 {% endif %}
 # Because we will potentially have two clients talking to the same
