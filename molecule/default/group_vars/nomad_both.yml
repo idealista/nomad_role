@@ -6,3 +6,5 @@ nomad_servers:
     - "nomadserver2:{{ nomad_rpc_port }}"
     - "nomadboth:{{ nomad_rpc_port }}"
     - "nomadclient:{{ nomad_rpc_port }}"
+nomad_client_host_volume:
+  - { name: "test", path: "/mnt", read_only: false }

@@ -118,3 +118,7 @@ nomad_servers:
   - "{{ nomad_advertise_address }}:{{ nomad_rpc_port }}"
   - "{{ nomad_advertise_address }}:{{ nomad_serf_port }}"
 nomad_plugins_enable_docker: True
+
+# Example for host volumes in clients
+# nomad_client_host_volume:
+#   - { name: "test", path: "/mnt", read_only: false }
