@@ -111,6 +111,8 @@ nomad_bootstrap_expect: 3   # Always 3 minimum for production
 nomad_retry_max: 10
 nomad_retry_interval: "10s"
 nomad_rejoin_after_leave: True
+nomad_leave_on_interrupt: True
+nomad_leave_on_terminate: True
 
 # Client config
 nomad_servers:
