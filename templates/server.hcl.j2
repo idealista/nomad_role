@@ -22,7 +22,7 @@ server {
   retry_interval = "{{ nomad_retry_interval }}"
   {% endif %}
   leave_on_interrupt = {{ nomad_leave_on_interrupt | bool | lower }}
-  leave_on_terminate = {{ nomad_leave_on_interrupt | bool | lower }}
+  leave_on_terminate = {{ nomad_leave_on_terminate | bool | lower }}
 
   rejoin_after_leave = {{ nomad_rejoin_after_leave | bool | lower }}
 }
