@@ -35,7 +35,7 @@ consul {
     client_service_name = "{{ nomad_consul_clients_service_name }}"
 
     # Enables automatically registering the services.
-    auto_advertise = {{ nomad_consul_auto_advertise | bool | lower}}
+    auto_advertise = {{ nomad_consul_auto_advertise | bool | lower }}
 
     # Enabling the server and client to bootstrap using Consul.
     server_auto_join = {{ nomad_consul_server_auto_join | bool | lower }}
