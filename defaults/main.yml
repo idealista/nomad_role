@@ -83,6 +83,7 @@ nomad_consul_servers_service_name: "nomad"
 nomad_consul_clients_service_name: "nomad-client"
 nomad_consul_server_auto_join: True
 nomad_consul_client_auto_join: True
+nomad_consul_auto_advertise: True
 
 # Base config - Vault https://www.nomadproject.io/docs/configuration/vault#vault-parameters
 nomad_vault_enabled: False
