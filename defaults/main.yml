@@ -28,12 +28,12 @@ nomad_root_path: /opt/nomad
 nomad_data_path: "{{ nomad_root_path }}/data"
 nomad_bin_path: "{{ nomad_root_path }}/bin"
 nomad_config_path: "/etc/nomad.d"
-plugin_plugin_path: "{{ nomad_data_path }}/plugins"
+nomad_plugin_path: "{{ nomad_data_path }}/plugins"
 nomad_skeleton_paths:
   - "{{ nomad_data_path }}"
   - "{{ nomad_bin_path }}"
   - "{{ nomad_config_path }}"
-  - "{{ plugin_plugin_path }}"
+  - "{{ nomad_plugin_path }}"
 
 ## Templates
 nomad_base_config_template_path: "nomad.hcl.j2"
