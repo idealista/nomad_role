@@ -1,6 +1,6 @@
 ---
 nomad_mode: client
 nomad_servers:
-    - "nomadserver:{{ nomad_rpc_port }}"
+  - "nomadserver:{{ nomad_rpc_port }}"
 nomad_client_host_volume:
   - { name: "test", path: "/mnt", read_only: false }

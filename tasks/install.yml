@@ -61,3 +61,7 @@
         dest: "/usr/bin/{{ nomad_exec_name }}"
         state: link
   when: nomad_force_reinstall or nomad_check is failed or nomad_version not in nomad_check.stderr
+
+- name: NOMAD | Install CNI Plugins
+  import_tasks: install-cni-plugins.yml
+  when: nomad_cni_install

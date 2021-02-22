@@ -1,0 +1,19 @@
+---
+
+- name: NOMAD | Download cni plugins
+  get_url:
+    url: "{{ nomad_cni_url }}"
+    dest: "{{ nomad_download_path }}"
+
+- name: NOMAD | Ensure CNI skeleton paths
+  file:
+    dest: "{{ nomad_cni_bin_path }}"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    state: directory
+
+- name: NOMAD | Extract downloaded package
+  unarchive:
+    src: "{{ nomad_cni_package_path }}"
+    dest: "{{ nomad_cni_bin_path }}"
+    remote_src: True

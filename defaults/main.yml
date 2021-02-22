@@ -115,6 +115,15 @@ nomad_rejoin_after_leave: True
 nomad_leave_on_interrupt: False
 nomad_leave_on_terminate: False
 
+## Nomad DNI Plugins
+nomad_cni_install: False
+nomad_cni_version: v0.9.0
+nomad_cni_package: "cni-plugins-linux-amd64-{{ nomad_cni_version }}.tgz"
+nomad_cni_url: "https://github.com/containernetworking/plugins/releases/download/{{ nomad_cni_version }}/{{ nomad_cni_package }}"
+nomad_cni_download_path: /usr/src
+nomad_cni_package_path: "{{ nomad_cni_download_path }}/{{ nomad_cni_package }}"
+nomad_cni_bin_path: "/opt/cni/bin"
+
 # Client config
 nomad_servers:
   - "{{ nomad_advertise_address }}:{{ nomad_http_port }}"
