@@ -47,6 +47,7 @@ nomad_documentation_link: https://learn.hashicorp.com/nomad
 # Owner
 nomad_user: nomad
 nomad_group: nomad
+nomad_user_shell: "/usr/sbin/nologin"
 
 # Maximum number of files limit
 nomad_max_files: 32768
