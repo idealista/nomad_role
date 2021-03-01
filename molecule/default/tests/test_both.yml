@@ -18,22 +18,13 @@ service:
 process:
   nomad:
     running: true
-user:
-  nomad:
-    exists: true
-    groups:
-      - nomad
-    shell: /usr/sbin/nologin
-group:
-  nomad:
-    exists: true
 
 command:
     version:
         exit-status: 0
         exec: "nomad version"
         stdout:
-            - "1.0.1"
+            - "1.0.3"
         skip: false
     agent:
         exit-status: 0

@@ -1,4 +1,5 @@
 ---
+nomad_version: 1.0.3
 
 nomad_private_tmp: False
 nomad_bootstrap_expect: 3
