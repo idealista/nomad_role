@@ -23,6 +23,9 @@ user:
     exists: true
     groups:
       - nomad
+group:
+  nomad:
+    exists: true
 command:
     version:
         exit-status: 0
