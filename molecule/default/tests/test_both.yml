@@ -23,6 +23,7 @@ user:
     exists: true
     groups:
       - nomad
+    shell: /usr/sbin/nologin
 group:
   nomad:
     exists: true
