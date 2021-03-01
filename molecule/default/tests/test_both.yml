@@ -18,7 +18,11 @@ service:
 process:
   nomad:
     running: true
-
+user:
+  nomad:
+    exists: true
+    groups:
+      - nomad
 command:
     version:
         exit-status: 0
