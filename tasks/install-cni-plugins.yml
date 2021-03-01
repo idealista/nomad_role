@@ -16,4 +16,6 @@
   unarchive:
     src: "{{ nomad_cni_package_path }}"
     dest: "{{ nomad_cni_bin_path }}"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
     remote_src: True
