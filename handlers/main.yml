@@ -1,7 +1,18 @@
 ---
+- name: wait for service to be up
+  wait_for:
+    host: "{{ nomad_advertise_address }}"
+    port: "{{ nomad_http_port }}"
+  listen: "wait"
+
+- name: drain node
+  command: "{{ nomad_exec_name }} node drain -enable -self"
+  when: nomad_mode != 'server'
+  listen: "drain"
 
 - name: restart nomad
   systemd:
     name: nomad
     state: restarted
   when: nomad_service_state != 'stopped'
+  listen: "restart"

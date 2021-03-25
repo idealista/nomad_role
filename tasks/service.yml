@@ -7,7 +7,7 @@
     mode: 0644
     owner: root
     group: root
-  notify: restart nomad
+  notify: restart
 
 - name: NOMAD | Configuring service
   systemd:

@@ -5,7 +5,10 @@
     dest: "{{ nomad_config_path }}/nomad.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
-  notify: restart nomad
+  notify:
+    - wait
+    - drain
+    - restart
 
 - name: NOMAD| Server config
   template:
@@ -14,7 +17,10 @@
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
   when: nomad_server_template_path is defined
-  notify: restart nomad
+  notify:
+    - wait
+    - drain
+    - restart
 
 - name: NOMAD| Client config
   template:
@@ -23,4 +29,7 @@
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
   when: nomad_client_template_path is defined
-  notify: restart nomad
+  notify:
+    - wait
+    - drain
+    - restart
