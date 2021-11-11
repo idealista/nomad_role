@@ -10,7 +10,7 @@ platforms:
   - name: nomadserver
     groups:
       - nomad_server
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:bullseye-slim}
     networks:
       - name: nomad_network
     purge_networks: true

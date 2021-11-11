@@ -9,9 +9,11 @@ install:
   - pip install pipenv
   - pipenv sync
 env:
-  jobs:
+  matrix:
     - MOLECULE_DISTRO=debian:buster-slim
+    - MOLECULE_DISTRO=debian:bullseye-slim
 script:
+  - export MOLECULE_DISTRO=${MOLECULE_DISTRO}
   - pipenv run molecule test --all
 
 notifications:
