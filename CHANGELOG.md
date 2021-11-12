@@ -9,10 +9,5 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Removed
 ### Fixed
 
-## [X.Y.Z](https://github.com/idealista/nomad_role/tree/X.Y.Z)
-### [Full Changelog](https://github.com/idealista/nomad_role/compare/1.0.0...X.Y.Z)
-### Changed
- *[#<issue_number>](https://github.com/idealista/nomad_role/issues/<issue_number>) \<Change description\>* @\<author\>
-
 ## [1.0.0](https://github.com/idealista/nomad_role/tree/1.0.0)
-- Initial release
+- Initial release @xtianae7 && @aren-pulid0

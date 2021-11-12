@@ -9,6 +9,7 @@
 This ansible role installs [Nomad](https://learn.hashicorp.com/nomad) in a Debian environment. It has been tested for the following Debian versions:
 
 * Buster
+* Bullseye
 
 This role has been generated using the [cookiecutter](https://github.com/cookiecutter/cookiecutter) tool, you can generate a similar role that fits your needs using the this [cookiecutter template](https://github.com/idealista/cookiecutter-ansible-role).
 
